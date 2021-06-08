@@ -174,7 +174,7 @@ export class VerifySesDomain extends Construct {
   }
 
   private createTopicOrUseExisting(domainName: string, verifyDomainIdentity: AwsCustomResource, existingTopic?: Topic) {
-    const topic = existingTopic ?? new Topic(this, 'SesNotificationTopic');
+    const topic = existingTopic ?? new Topic(this, domainName + 'SesNotificationTopic');
     new CfnOutput(this, domainName + 'SesNotificationTopic', {
       value: topic.topicArn,
       description: 'SES notification topic for ' + domainName,
